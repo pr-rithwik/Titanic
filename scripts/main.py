@@ -1,10 +1,9 @@
-from pathlib import Path
-from code.data_transformer import DataTransformer
-from code.logistic_regr_model import \
+from scripts.data_transformer import DataTransformer
+from scripts.logistic_regr_model import \
     simple_logistic_model_fit, simple_logistic_model_predict
+from scripts.utils import get_project_root
 
-
-BASE_DIR = Path("/")
+BASE_DIR = get_project_root()
 
 
 def transform_data(file_path, train_data=True):
@@ -26,8 +25,8 @@ def transform_data(file_path, train_data=True):
     return data_transformer
 
 def simple_logistic_model():
-    train_data_path = BASE_DIR / "code/train.csv"
-    test_data_path = BASE_DIR / "code/test.csv"
+    train_data_path = BASE_DIR / "data/train.csv"
+    test_data_path = BASE_DIR / "data/test.csv"
 
     train_data_transformer = transform_data(train_data_path)
     clf = simple_logistic_model_fit(
@@ -38,4 +37,8 @@ def simple_logistic_model():
     df_out = simple_logistic_model_predict(
         test_data_transformer.df, clf
     )
-    return df_out
+    output_file = BASE_DIR / "results/simple_logistic_regr.csv"
+    df_out.to_csv(output_file, index=False)
+
+# if __name__ == "__main__":
+#     simple_logistic_model()
