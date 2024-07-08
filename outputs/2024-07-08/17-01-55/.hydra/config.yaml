@@ -1,7 +1,0 @@
-data:
-  train_raw: data/raw/train.csv
-  test_raw: data/raw/test.csv
-  train_processed: data/processed/train_1.csv
-  test_processed: data/processed/test_1.csv
-results:
-  simple_logistic_regr_1: results/simple_logistic_regr_1.csv

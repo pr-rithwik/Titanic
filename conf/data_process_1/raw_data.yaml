@@ -10,7 +10,7 @@ columns:
   embarked: Embarked
 
 remove:
-  name: Name
-  ticket: Ticket
-  cabin: Cabin
+  name: columns.name
+  ticket: columns.ticket
+  cabin: columns.cabin
   
