@@ -14,7 +14,7 @@ class DataTransformer:
     def create_df(self):
         self.df = pd.read_csv(self.data_file)
         
-    def set_passengerid_as_index(self):
+    def set_passenger_id_as_index(self):
         self.df.set_index("PassengerId", inplace=True)
     
     def seperate_output(self):

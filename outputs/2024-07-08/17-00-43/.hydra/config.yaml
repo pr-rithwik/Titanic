@@ -1,0 +1,7 @@
+data:
+  train_raw: code/raw/train.csv
+  test_raw: code/raw/test.csv
+  train_processed: code/processed/train_1.csv
+  test_processed: code/processed/test_1.csv
+results:
+  simple_logistic_regr_1: results/simple_logistic_regr_1.csv

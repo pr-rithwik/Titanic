@@ -1,0 +1,16 @@
+columns:
+  survived: Survived
+  passenger_id: PassengerId
+  name: Name
+  ticket: Ticket
+  cabin: Cabin
+  age: Age
+  sex: Sex
+  pclass: Pclass
+  embarked: Embarked
+
+remove:
+  name: Name
+  ticket: Ticket
+  cabin: Cabin
+  

@@ -2,6 +2,8 @@ from scripts.data_transformer import DataTransformer
 from scripts.logistic_regr_model import \
     simple_logistic_model_fit, simple_logistic_model_predict
 from scripts.utils import get_project_root
+import hydra
+
 
 BASE_DIR = get_project_root()
 
@@ -13,7 +15,7 @@ def transform_data(file_path, train_data=True):
     if train_data:
         data_transformer.seperate_output()
     
-    data_transformer.set_passengerid_as_index()
+    data_transformer.set_passenger_id_as_index()
     data_transformer.remove_unneeded_cols()
     data_transformer.handle_missing_age_values()
     data_transformer.categorise_age_into_bins()
@@ -24,9 +26,10 @@ def transform_data(file_path, train_data=True):
 
     return data_transformer
 
-def simple_logistic_model():
-    train_data_path = BASE_DIR / "data/train.csv"
-    test_data_path = BASE_DIR / "data/test.csv"
+@hydra.main(version_base=None, config_path="../conf", config_name="config")
+def simple_logistic_model(cfg):
+    train_data_path = BASE_DIR / cfg.data.train_raw
+    test_data_path = BASE_DIR / cfg.data.test_raw
 
     train_data_transformer = transform_data(train_data_path)
     clf = simple_logistic_model_fit(
@@ -37,7 +40,7 @@ def simple_logistic_model():
     df_out = simple_logistic_model_predict(
         test_data_transformer.df, clf
     )
-    output_file = BASE_DIR / "results/simple_logistic_regr.csv"
+    output_file = BASE_DIR / cfg.results.simple_logistic_regr_1
     df_out.to_csv(output_file, index=False)
 
 # if __name__ == "__main__":
