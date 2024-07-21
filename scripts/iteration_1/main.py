@@ -1,11 +1,13 @@
-from scripts.data_transformer import DataTransformer
-from scripts.logistic_regr_model import \
+from scripts.iteration_1 import DataTransformer
+from scripts.iteration_1 import \
     simple_logistic_model_fit, simple_logistic_model_predict
-from scripts.utils import get_project_root
+from scripts.utils import get_project_root, get_config_details
 import hydra
 
 
 BASE_DIR = get_project_root()
+CONFIG_PATH = get_config_details()
+CONFIG_NAME = "config"
 
 
 def transform_data(file_path, train_data=True):
@@ -26,7 +28,7 @@ def transform_data(file_path, train_data=True):
 
     return data_transformer
 
-@hydra.main(version_base=None, config_path="../conf", config_name="config")
+@hydra.main(version_base=None, config_path=CONFIG_PATH, config_name=CONFIG_NAME)
 def simple_logistic_model(cfg):
     train_data_path = BASE_DIR / cfg.data.train_raw
     test_data_path = BASE_DIR / cfg.data.test_raw
